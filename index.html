@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Camzon - Premium Marketplace Platform</title>
-	<link rel="icon" type="image/png" href="favicon.png">
-    
+    <link rel="icon" type="image/png" href="favicon.png">
     <!-- Stable Paystack V1 Framework Script Mirror Integration -->
-  <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
     
     <!-- HTML-To-Image Rendering Engine Package CDN -->
     <script src="https://jsdelivr.net"></script>
     
     <style>
         :root {
-            --primary: #e61e25; /* Shop Camzon Premium Red Theme Accent Color */
+            --primary: #e61e25;
             --primary-dark: #b81419;
             --bg: #f8f9fa;
             --white: #ffffff;
@@ -48,7 +47,7 @@
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             width: 75vw; height: 75vh;
-            background-image: url('https://i.ibb.co/HfzhxMKr/favicon-png.jpg');
+            background-image: url('https://i.ibb.co/b5nwfzZj/favicon-png.jpg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
@@ -56,8 +55,6 @@
             pointer-events: none;
             z-index: -1;
         }
-
-        /* --- HIGH-PERFORMANCE ANIMATIONS --- */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
@@ -68,7 +65,7 @@
             100% { transform: scale(1) translateY(0); opacity: 1; }
         }
 
-        /* --- STAGE SCREEN OVERLAYS --- */
+        /* --- MULTI-STAGE SCREEN LOADER OVERLAYS --- */
         .loader-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -150,7 +147,6 @@
             gap: 15px;
         }
 
-        /* Currency Toggle Buttons Layout */
         .currency-toggle-box {
             display: flex;
             background: var(--gray-light);
@@ -236,10 +232,9 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background-color: var(--success); /* Defaults to green */
+            background-color: var(--success);
             transition: background-color 0.3s ease;
         }
-
         .hero-banner {
             background: linear-gradient(135deg, var(--primary) 0%, #ff4d52 100%);
             color: var(--white);
@@ -249,7 +244,6 @@
             border-radius: 0 0 24px 24px;
         }
 
-        /* --- CARD WORKSPACE SHELL VIEWS --- */
         .view {
             display: none;
             max-width: 1200px;
@@ -282,6 +276,7 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(230, 30, 37, 0.04);
         }
+
         .product-img-wrapper {
             width: 100%;
             height: 200px;
@@ -326,7 +321,6 @@
             overflow: hidden;
             line-height: 1.4;
         }
-
         .btn {
             width: 100%;
             background-color: var(--primary);
@@ -354,7 +348,7 @@
             color: var(--text-dark);
         }
 
-        /* --- INFO SHEET WRAPPER --- */
+        /* --- PRODUCT SPECIFICATION DETAILS PANEL --- */
         .details-page-container {
             max-width: 800px;
             margin: 0 auto;
@@ -390,7 +384,7 @@
             display: block;
         }
 
-        /* --- SLIDER CONTROLS --- */
+        /* --- SLIDER NAVIGATION OVERLAYS --- */
         .slider-arrow-btn {
             position: absolute;
             top: 50%;
@@ -415,7 +409,6 @@
         .slider-arrow-btn:hover { background: rgba(230, 30, 37, 0.85); scale: 1.05; }
         .slider-arrow-left { left: 15px; }
         .slider-arrow-right { right: 15px; }
-
         .slider-dots-indicator-row {
             position: absolute;
             bottom: 15px;
@@ -439,7 +432,7 @@
             box-shadow: 0 0 6px var(--primary);
         }
 
-        /* --- PLAY LOGO BADGE --- */
+        /* --- AUTOMATIC PLAYBACK BADGES --- */
         .slider-playback-badge {
             position: absolute;
             top: 15px;
@@ -479,8 +472,7 @@
 
         .spec-label { font-size: 12px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
         .spec-value { font-size: 15px; color: var(--text-dark); font-weight: 700; }
-
-        /* --- HISTORY LOG CARDS --- */
+        /* --- NATIVE STORAGE TIMELINE LOGS --- */
         .bookings-container {
             max-width: 700px;
             margin: 0 auto;
@@ -501,15 +493,21 @@
             gap: 12px;
         }
 
-        .booking-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--gray-border); padding-bottom: 8px; }
+        .booking-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px dashed var(--gray-border); 
+            padding-bottom: 8px; 
+        }
+        
         .booking-id { font-size: 13px; font-weight: 700; color: var(--text-darker); }
         .booking-date { font-size: 12px; color: var(--text-muted); }
         .booking-summary { font-size: 14px; line-height: 1.5; color: var(--text-dark); }
         .booking-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; }
         .booking-cost { font-weight: 800; color: var(--primary); font-size: 17px; }
-
-        /* --- CART AND CHECKOUT LAYOUT --- */
-        .cart-container, .checkout-container {
+        /* --- SHOPPING BAG OVERLAYS --- */
+        .cart-container {
             max-width: 650px;
             margin: 0 auto;
             background: var(--white);
@@ -517,6 +515,17 @@
             padding: 30px;
             border: 1px solid var(--gray-border);
             box-shadow: 0 10px 30px rgba(0,0,0,0.01);
+        }
+
+        /* ❌ REMOVED ALL OUTER CARD BORDERS AND SHADOWS FROM THE FORM AREA */
+        .checkout-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: transparent; /* Blends directly into page */
+            border-radius: 0;
+            padding: 20px 0;
+            border: none !important;
+            box-shadow: none !important;
         }
 
         .cart-item-row { display: flex; align-items: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid var(--gray-border); }
@@ -527,7 +536,6 @@
         .cart-item-price { color: var(--primary); font-weight: 700; margin-top: 3px; font-size: 16px; }
         .remove-cart-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; font-weight: 500; }
         .remove-cart-btn:hover { color: var(--primary); }
-
         .summary-card {
             background: linear-gradient(180deg, #fff5f5 0%, #fff0f0 100%);
             border: 1px dashed rgba(230, 30, 37, 0.3);
@@ -538,12 +546,14 @@
         .summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
         .summary-row:last-child { border-top: 1px solid rgba(230, 30, 37, 0.1); padding-top: 8px; font-weight: 700; }
 
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
-        .form-group input { width: 100%; padding: 12px 16px; border: 1px solid var(--gray-border); border-radius: 10px; background-color: var(--bg); font-size: 15px; }
-        .form-group input:focus { outline: none; border-color: var(--primary); background-color: var(--white); }
+        .form-group { margin-bottom: 24px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 10px; font-size: 14px; font-weight: 600; color: var(--text-dark); }
+        
+        /* 🎨 Light background tint shader for input boxes as requested */
+        .form-group input { width: 100%; padding: 16px 20px; border: none; border-radius: 12px; background-color: #eaf1fe; font-size: 15px; color: var(--text-darker); }
+        .form-group input:focus { outline: none; background-color: var(--white); box-shadow: 0 0 0 2px rgba(230, 30, 37, 0.15); }
 
-        /* --- DIALOG MODALS OVERLAYS --- */
+        /* --- POPUP WINDOW OVERLAYS --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .modal-card { background: var(--white); border-radius: 24px; padding: 30px; max-width: 480px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.12); animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
@@ -554,7 +564,6 @@
         .tier-title { font-weight: 700; font-size: 15px; color: var(--text-dark); }
         .tier-delivery { font-size: 11px; color: var(--success); font-weight: 700; text-transform: uppercase; margin-top: 3px; }
         .tier-price { font-size: 17px; font-weight: 800; color: var(--primary); }
-
         .qty-controller { display: flex; align-items: center; justify-content: center; gap: 15px; margin: 20px 0; padding: 12px; background: var(--gray-light); border-radius: 12px; }
         .qty-btn { width: 36px; height: 36px; background: var(--white); border: 1px solid var(--gray-border); border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .qty-val { font-size: 18px; font-weight: 700; width: 40px; text-align: center; }
@@ -562,6 +571,7 @@
         .modal-icon { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px auto; }
         .modal-icon.icon-success { background: #e6f6ec; color: var(--success); }
         .modal-icon.icon-danger { background: #fde8e8; color: var(--danger); }
+
         /* --- VISUAL STYLISH CUSTOM INVOICE --- */
         .invoice-box { border: 2px dashed var(--gray-border); border-radius: 12px; padding: 25px; background: #fff; text-align: left; margin-bottom: 20px; }
         .invoice-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--gray-border); padding-bottom: 12px; }
@@ -574,18 +584,20 @@
 </head>
 <body>
 
+    <!-- GLOBAL LOADING SYSTEM OVERLAYS -->
     <div class="loader-overlay" id="globalProcessLoader">
         <div class="spinner"></div>
         <div class="loader-text" id="loaderTitleMessage">Processing Operational Requests</div>
         <div class="loader-subtext" id="loaderSubtextMessage">Verifying parameters, please stay on this screen page...</div>
     </div>
 
+    <!-- STICKY TOP NAVIGATION BAR WITH ACCOUNT SWITCHER LINK -->
     <header>
         <div class="nav-container">
             <div class="logo-area" onclick="showViewWithLoader('homepageView')">
                 <span class="brand-text">Shop Camzon</span>
                 <div class="logo-img-holder">
-                    <img src="https://placehold.co" alt="Logo" onerror="this.parentElement.style.display='none';">
+                    <img src="https://i.ibb.co/b5nwfzZj/favicon-png.jpg" alt="Logo">
                 </div>
             </div>
             
@@ -594,7 +606,7 @@
 
                 <div class="currency-toggle-box">
                     <button class="currency-btn active" id="btnCFA" onclick="switchCurrency('CFA')">CFA</button>
-                    <button class="currency-btn" id="btnNGN" onclick="switchCurrency('NGN')">₦ NGN</button>
+                    <button class="currency-btn" id="btnNGN" onclick="switchCurrency('NGN')">$ USD</button>
                 </div>
 
                 <div class="network-signal-container" id="signalContainer">
@@ -619,20 +631,19 @@
         
         <div class="product-grid">
             
-            <!-- PRODUCTION CARD 1 -->
+            <!-- PRODUCTION CARD 1: DEDICATED AI TRIPOD -->
             <div class="product-card">
                 <div class="product-img-wrapper">
                     <span class="product-badge">Top Seller</span>
-                    <img src="https://i.ibb.co/w55z8fk/Whats-App-Image-2026-06-24-at-8-44-46-PM-2.jpg" alt="Wireless Noise Canceling Pro Headphones" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://w3.org\' width=\'100\' height=\'100\'><rect width=\'100\' height=\'100\' fill=\'%23eee\'/><text x=\'50%\' y=\'50%\' font-size=\'12\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23666\'>Product Image</text></svg>'">
+                    <img src="https://i.ibb.co/XrpC3j0X/Whats-App-Image-2026-06-27-at-12-41-10-PM.jpg" alt="AI Tripod" class="product-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://w3.org\' width=\'100\' height=\'100\'><rect width=\'100\' height=\'100\' fill=\'%23eee\'/><text x=\'50%\' y=\'50%\' font-size=\'12\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23666\'>Product Image</text></svg>'">
                 </div>
                 <div class="product-details">
-                    <div class="product-name">Remote Bluetooth Control</div>
-                    <button class="btn" style="margin-bottom:8px;" onclick="triggerTierSelection(1, 'Wireless Pro Headphones', 'https://i.ibb.co/w55z8fk/Whats-App-Image-2026-06-24-at-8-44-46-PM-2.jpg')">Add to Cart</button>
-                    <button class="btn btn-secondary" style="margin-top:0;" onclick="loadAndShowProductDetailsPage(1, 'Wireless Pro Headphones', 'https://i.ibb.co/w55z8fk/Whats-App-Image-2026-06-24-at-8-44-46-PM-2.jpg')">View Details</button>
+                    <div class="product-name">AI Tripod</div>
+                    <button class="btn" style="margin-bottom:8px;" onclick="triggerTierSelection(1, 'AI Tripod', 'https://i.ibb.co/XrpC3j0X/Whats-App-Image-2026-06-27-at-12-41-10-PM.jpg')">Add to Cart</button>
+                    <button class="btn btn-secondary" style="margin-top:0;" onclick="loadAndShowProductDetailsPage(1, 'AI Tripod', 'https://i.ibb.co/XrpC3j0X/Whats-App-Image-2026-06-27-at-12-41-10-PM.jpg')">View Details</button>
                 </div>
             </div>
 
-           
         </div>
     </div>
     <!-- 2. STANDALONE DEEP PRODUCT DETAILS WORKSPACE VIEW -->
@@ -668,7 +679,7 @@
                 <!-- Description text blocks append here dynamically -->
             </div>
 
-            <button class="btn btn-secondary" onclick="showViewWithLoader('homepageView', 'Returning to Gallery...', 'Re-initializing catalog blocks...')">← Close & Return to Last Page</button>
+            <button class="btn" onclick="showViewWithLoader('homepageView', 'Returning to Gallery...', 'Re-initializing catalog blocks...')">← Close & Return to Last Page</button>
         </div>
     </div>
 
@@ -682,7 +693,7 @@
                 <!-- Local storage elements loop and append here live -->
             </div>
 
-            <button class="btn btn-secondary" style="margin-top: 15px;" onclick="showViewWithLoader('homepageView')">Return to Storefront Gallery</button>
+            <button class="btn" style="margin-top: 15px;" onclick="showViewWithLoader('homepageView')">Return to Storefront Gallery</button>
         </div>
     </div>
     <!-- 4. CART DRAWER WORKSPACE VIEW -->
@@ -735,7 +746,6 @@
             <button class="btn btn-secondary" onclick="showViewWithLoader('cartView')">Return to Shopping Bag</button>
         </div>
     </div>
-
     <!-- 6. PRICE BUNDLE SELECTOR POPUP WINDOW -->
     <div class="modal-overlay" id="tierSelectorModal">
         <div class="modal-card">
@@ -803,7 +813,7 @@
     <!-- SHOP CAMZON SYSTEM CONTROLLER ENGINE SCRIPT -->
     <script>
         // Production Verified Live Account Public Credentials Mapping Key
-        const PAYSTACK_PUB_KEY = 'pk_test_3c6749696834a73e309d35b2fe573f450cbe7bdf'; 
+        const PAYSTACK_PUB_KEY = 'pk_live_a719f1d38e972a6c4f18d650b1af4425fb945a0f'; 
 
         // 🔴 1. GLOBAL SIGNAL STRENGTH MANUAL INTERCEPT TOGGLE SWITCH 
         // Set this to true to immediately turn the top right monitor red, force offline mode, and block checking out!
@@ -824,49 +834,30 @@
         
         // Active Multi-Currency Switcher Core Metrics (Default: CFA Franc)
         let currentCurrency = 'CFA';
-        const NGN_EXCHANGE_RATE = 2.45;
+        const USD_EXCHANGE_RATE = 0.00165; // Balanced conversion matrix ratio (1 CFA Franc = 0.00165 US Dollars)
 
         // Interactive Slide Ticker State Pointers
         let currentActiveSlideIndex = 0;
         let activeSlideImagesArray = [];
         let sliderAutoTimerLoopHook = null;
 
-        // 📋 DEEP PRODUCT SPECIFICATION DATABASE WITH MULTI-IMAGE GALLERY ARRAYS
+        // 📋 DEEP PRODUCT SPECIFICATION DATABASE WITH YOUR 5 SPECIFIC DYNAMIC IMAGE SLIDER LINKS
         const productInfoDatabase = {
             1: {
-                name: "Remote BlueTooth Control",
+                name: "AI Tripod",
                 images: [
-                    "https://i.ibb.co/DHzLX4RW/Whats-App-Image-2026-06-24-at-8-44-47-PM.jpg", 
-                    "https://i.ibb.co/JWjJWqDq/Whats-App-Image-2026-06-24-at-8-44-47-PM-1.jpg",
-		    "https://i.ibb.co/jknbCYVH/Whats-App-Image-2026-06-24-at-8-44-47-PM-2.jpg",
-		    "https://i.ibb.co/YF9z9Mr5/Whats-App-Image-2026-06-24-at-8-44-44-PM-1.jpg", 
-                    "https://i.ibb.co/LdfXrdJ3/Whats-App-Image-2026-06-24-at-8-44-44-PM-2.jpg",
-		    "https://i.ibb.co/tMRGqknt/Whats-App-Image-2026-06-24-at-8-44-45-PM-1.jpg",
-		    "https://i.ibb.co/ZzjrfbbD/Whats-App-Image-2026-06-24-at-8-44-45-PM.jpg",
-		    "https://i.ibb.co/k2Pd3PTQ/Whats-App-Image-2026-06-24-at-8-44-44-PM.jpg" 
+                    "https://i.ibb.co/XrpC3j0X/Whats-App-Image-2026-06-27-at-12-41-10-PM.jpg", 
+                    "https://i.ibb.co/V02njx7L/Whats-App-Image-2026-06-27-at-12-41-51-PM.jpg", 
+                    "https://i.ibb.co/jvyFczLY/Whats-App-Image-2026-06-27-at-12-41-50-PM-1.jpg",   
+                    "https://i.ibb.co/6cvgDRDc/Whats-App-Image-2026-06-24-at-8-44-47-PM-1.jpg", 
+                    "https://i.ibb.co/ccSKDSM2/Whats-App-Image-2026-06-24-at-8-44-46-PM-2.jpg",
+		    "https://i.ibb.co/99xcgL3f/Whats-App-Image-2026-06-24-at-8-44-47-PM-3.jpg",
+		    "https://i.ibb.co/8nqTKzXd/Whats-App-Image-2026-06-24-at-8-44-43-PM.jpg",
+		    "https://i.ibb.co/fd06GtxM/Whats-App-Image-2026-06-24-at-8-44-45-PM-2.jpg"
                 ],
-                description: "Fast and Chargeable Remote Control.",
-                specs: { status: "Ugrade TYC Remote Control, Free Shooting is not Limited", stock: "In Stock (High)", delivery: "Free Express (2-7 Days)", compatibility: "Universal Bluetooth 5.2", compatibility: "Al intelligent face tracking can be started without downloading software"}
-            },
-            2: {
-                name: "Smart Camera (Waterproof)",
-                images: [
-                    "https://ibb.co",
-                    "https://unsplash.com"
-                ],
-                description: "Secure your estate workspace borders with the ultra-resilient robotic imaging guard drone casing. Features ultra-sharp true 4K night-vision light optical components, dynamic dual-axis horizontal and vertical pan tracking, weatherized IP67 waterproof certification sealing, and immediate smartphone alert triggers.",
-                specs: { status: "Hot Deal", stock: "Low Stock Alert", delivery: "Free Standard (3-5 Days)", connectivity: "Dual-Band 2.4G/5G Wi-Fi" }
-            },
-		3: {
-                name: "New Product",
-                images: [
-                    "https://ibb.co", 
-                    "https://unsplash.com" 
-                ],
-                description: "Experience absolute acoustic precision with our flagship studio audio headphones setup. Engineered with intelligent hybrid active noise cancellation, composite custom-layered bass diaphragms, and premium skin-friendly breathable ear cushions for infinite fatigue-free listening marathons.",
-                specs: { status: "Top Seller", stock: "In Stock (High)", delivery: "Free Express (2-4 Days)", compatibility: "Universal Bluetooth 5.2" }
+                description: "An AI tripod (or auto-tracking tripod) is a motorized mount that uses a built-in camera and AI-powered image recognition to automatically keep you centered in the frame. It is a massive game-changer for solo creators, eliminating the need for a camera operator.",
+                specs: { status: "Top Seller", stock: "In Stock (High)", delivery: "Free Express (1-7 Days)", compatibility: "Universal Android & iOS" }
             }
-
         };
 
         // Hardware internet connection link checker
@@ -928,7 +919,6 @@
         function closeErrorModal() {
             document.getElementById('errorModal').style.display = 'none';
         }
-
         // Handles multi-currency currency re-calculation updates
         function switchCurrency(currencyCode) {
             if (currentCurrency === currencyCode) return;
@@ -941,7 +931,7 @@
             
             const submitBtn = document.getElementById('mainPaymentSubmitBtn');
             if (submitBtn) {
-                submitBtn.innerText = currentCurrency === 'CFA' ? 'Secure Checkout With Paystack' : 'Pay in Naira With Paystack';
+                submitBtn.innerText = currentCurrency === 'CFA' ? 'Secure Checkout With Paystack' : 'Pay in USD With Paystack';
             }
             
             if (activeSelection) {
@@ -970,8 +960,8 @@
             if (currentCurrency === 'CFA') {
                 return 'CFA ' + cfaAmount.toLocaleString();
             } else {
-                let nairaValue = Math.round(cfaAmount * NGN_EXCHANGE_RATE);
-                return '₦ ' + nairaValue.toLocaleString();
+                let dollarValue = (cfaAmount * USD_EXCHANGE_RATE).toFixed(2);
+                return '$' + parseFloat(dollarValue).toLocaleString();
             }
         }
 
@@ -1087,7 +1077,6 @@
             document.getElementById('detailsDescriptionBlock').innerText = data.description;
             showViewWithLoader('productDetailsView', 'Opening Specification Sheet...', 'Loading high-resolution asset displays...');
         }
-
         /* --- BROWSER-NATIVE STORAGE BACKEND ENGINE (localStorage) --- */
         function saveOrderToLocalVault(orderObject) {
             try {
@@ -1098,6 +1087,7 @@
                 console.error("Local storage allocation error:", e);
             }
         }
+
         function loadAndShowBookingsPage() {
             const listWrapper = document.getElementById('bookingsTimelineListWrapper');
             if (!listWrapper) return;
@@ -1160,7 +1150,6 @@
             let orders = JSON.parse(localStorage.getItem('megaShopLocalOrders')) || [];
             console.log(`System database synchronized: ${orders.length} orders safely stored locally.`);
         }
-
         /* --- BUNDLE CHOICES INTERACTIVE RENDERING LOOPS --- */
         function triggerTierSelection(id, name, imgUrl) {
             activeSelection = { id, name, imgUrl };
@@ -1173,6 +1162,7 @@
             renderTierOptions();
             document.getElementById('tierSelectorModal').style.display = 'flex';
         }
+
         function renderTierOptions() {
             const wrapper = document.getElementById('tierOptionsWrapper');
             if(!wrapper) return;
@@ -1223,7 +1213,6 @@
             }
             renderTierOptions();
         }
-
         function confirmTierAndAdd() {
             if (!activeSelection) return;
             
@@ -1266,7 +1255,7 @@
 
             if (cart.length === 0) {
                 container.innerHTML = `<p style="text-align:center; padding:30px 0; color:var(--text-muted);">Your shopping bag is empty.</p>`;
-                totalDisplay.innerText = currentCurrency === 'CFA' ? 'CFA 0' : '₦ 0';
+                totalDisplay.innerText = currentCurrency === 'CFA' ? 'CFA 0' : '$0';
                 checkoutBtn.disabled = true;
                 checkoutBtn.style.opacity = "0.5";
                 return;
@@ -1297,6 +1286,7 @@
 
             totalDisplay.innerText = formatCurrencyDisplay(totalCfaAccumulator);
         }
+
         function goToInformationPage() {
             if (cart.length === 0) return;
             showViewWithLoader('checkoutView', 'Opening Delivery Module...', 'Setting up secure transaction protocols...');
@@ -1305,10 +1295,10 @@
         function getTotalCartAmountCFA() {
             return cart.reduce((sum, item) => sum + item.baseCfaPrice, 0);
         }
-
-        // Global maintenance switch
+        // Global system maintenance shield bypass indicator switch
         const IS_WEBSITE_CLOSED_FOR_MAINTENANCE = false;
 
+        // Handles data validation layers and the requested 2.5-second detail-merging load sequence
         function startPaystackProcess() {
             if (IS_WEBSITE_CLOSED_FOR_MAINTENANCE === true) {
                 triggerError("Service Notification", "Network Error: Service is not responding. Sorry for the inconvenience, the page will be ready soon.");
@@ -1337,7 +1327,7 @@
             
             loader.style.display = 'flex';
 
-            // Balanced 2.5-second detail merging loader screen delay loop
+            // Strict 2.5-second professional blending overlay screen delay loop
             setTimeout(() => {
                 loader.style.display = 'none';
                 launchSecureGateway(email, name, phone, address, totalCfaAmount);
@@ -1363,7 +1353,7 @@
             gridContainer.style.left = '0';
             gridContainer.style.width = '100%';
             gridContainer.style.height = '100%';
-            gridContainer.style.opacity = '0.04'; // Faint layout transparency block
+            gridContainer.style.opacity = '0.04'; // Keeps it faint so layout layers remain readable
             gridContainer.style.pointerEvents = 'none';
             gridContainer.style.zIndex = '0';
             gridContainer.style.display = 'grid';
@@ -1386,18 +1376,19 @@
 
             receiptArea.insertBefore(gridContainer, receiptArea.firstChild);
         }
-
         function launchSecureGateway(email, name, phone, address, totalCfaAmount) {
             if (IS_WEBSITE_CLOSED_FOR_MAINTENANCE === true) {
                 triggerError("Service Notification", "Network Error: Service is not responding. Sorry for the inconvenience, the page will be ready soon.");
                 return;
             }
 
-            const finalConvertedNairaAmount = Math.round((totalCfaAmount * NGN_EXCHANGE_RATE) * 100); 
+            // Converts your active shopping bill straight into Dollar/CFA final payment units
+            const finalConvertedAmount = Math.round((totalCfaAmount * USD_EXCHANGE_RATE) * 100); 
             const itemsSummary = cart.map(item => `${item.name} (${item.quantity} Pcs)`).join(", ");
             const invoiceFormattedTotal = formatCurrencyDisplay(totalCfaAmount);
             const formattedDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 
+            // Gathers item display imagery URLs list array stack to feed your watermark grid
             const cartImagesList = cart.map(item => item.imgUrl);
 
             latestTransactionData = {
@@ -1417,8 +1408,8 @@
                 let handler = PaystackPop.setup({
                     key: PAYSTACK_PUB_KEY,
                     email: email,
-                    amount: finalConvertedNairaAmount, 
-                    currency: "NGN", 
+                    amount: finalConvertedAmount, 
+                    currency: "USD", 
                     ref: latestTransactionData.reference,
                     metadata: {
                         custom_fields: [
@@ -1438,7 +1429,10 @@
                         document.getElementById('receiptItems').innerText = latestTransactionData.summary;
                         document.getElementById('receiptTotalAmount').innerText = latestTransactionData.displayTotal;
 
-                        applyTiledReceiptBackground(latestTransactionData.receiptImages);
+                        // Inject your real production image link arrays into background tiles layer grid
+                        applyTiledReceiptBackground([
+                            "https://i.ibb.co/b5nwfzZj/favicon-png.jpg"
+                        ]);
 
                         document.getElementById('paymentForm').reset();
                         cart = [];
@@ -1459,7 +1453,7 @@
             }
         }
 
-        // Transforms layout element structural arrays straight into image files blocks
+        // Transforms invoice elements into crisp downloadable graphic picture files
         function dispatchImageAndWhatsApp() {
             if(!latestTransactionData) return;
 
@@ -1477,7 +1471,7 @@
                     triggerError("Timeout Notice", "Compilation took too long. Dispatching receipt text directly to WhatsApp.");
                     executeWhatsAppTextDispatch();
                 }
-            }, 6000); // High-speed 6-second compile limiter timeout logic wrapper
+            }, 6000); // High-speed 6-second compile timer limiter guard framework
 
             htmlToImage.toPng(targetElement, { quality: 1.0, backgroundColor: '#ffffff' })
                 .then(function (dataUrl) {
@@ -1489,7 +1483,13 @@
                     link.href = dataUrl;
                     link.click();
 
-                                       loader.style.display = 'none';
+                    loader.style.display = 'none';
+                    executeWhatsAppTextDispatch();
+                })
+                .catch(function (error) {
+                    hasCompleted = true;
+                    clearTimeout(timerLimit);
+                    loader.style.display = 'none';
                     triggerError("Image Rendering Error", "Failed to compile layout node layers into an image asset file. Dispatching text data only.");
                     executeWhatsAppTextDispatch();
                     console.error('oops, something went wrong!', error);
@@ -1509,7 +1509,7 @@
                                     `📁 _Note: A high-quality image version of this invoice has been downloaded directly to your device storage blocks automatically!_`;
             
             const encodedText = encodeURIComponent(whatsappMessage);
-            window.open(`https://whatsapp.com{encodedText}`, '_blank');
+            window.open(`https://wa.link/fpz2wq{encodedText}`, '_blank');
         }
 
         function closeReceiptModal() {
