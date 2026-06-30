@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Camzon - Premium Marketplace Platform</title>
   <link rel="icon" type="image/png" href="favicon.png">
- <link rel="manifest" href="manifest.json">
-
+    
     <!-- Stable Paystack V1 Framework Script Mirror Integration -->
    <script src="https://js.paystack.co/v1/inline.js"></script>
     
@@ -596,15 +595,17 @@
         }
 
         /* 🖼️ LEFT CONTENT ADVERT BOX WRAPPER (FULL SCREEN PROPORTIONS) */
-        .checkout-left-advert-card {
-            background: var(--white);
-            border: 1px solid var(--gray-border);
+        .checkout-left-dispatch-card {
+            background: linear-gradient(180deg, #fffcf5 0%, #fff9e6 100%);
+            border: 1px solid #ffeeba;
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
+            color: #856404;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
+            align-items: center;
             height: 100%;
         }
 
@@ -634,12 +635,12 @@
         }
 
         /* Custom image slot for your second side if you choose to replace the icon text layer */
-        .checkout-right-dispatch-card img {
+       .checkout-right-advert-card img {
             width: 100%;
             height: auto;
             max-height: 450px;
             border-radius: 8px;
-            object-fit: cover;
+            object-fit: cover; /* Crops cleanly inside its full area frame bounding points */
             margin-bottom: 15px;
         }
 
@@ -1035,7 +1036,7 @@
             <!-- COLUMN A: LEFT SIDEBAR - FULL-SIZE PRIMARY ADVERT DISPLAY -->
             <div class="checkout-left-advert-card">
                 <!-- 🔗 PLACE YOUR FIRST IMAGE LINK URL HERE BELOW -->
-                <img src="https://ibb.co" alt="Left Banner Image Target">
+                <img src="https://i.ibb.co/kst3nK9f/IMG-7878-JPG-removebg-preview.png" alt="Left Banner Image Target">
                 
                 <h4 style="font-weight:800; font-size:15px; color:var(--text-darker); margin-bottom:6px;">Premium AI Stabilization</h4>
                 <p style="font-size:13px; color:var(--text-muted); line-height:1.4;">Smart object tracking matrices, premium aircraft alloy component build quality parameters.</p>
@@ -1107,11 +1108,12 @@
             </div>
 
             <!-- COLUMN C: RIGHT SIDEBAR - FULL-SIZE LOGISTICS DISPATCH BIKE DISPLAY -->
-            <div class="checkout-right-dispatch-card">
-                <!-- 🔗 OPTIONAL: PLACE YOUR SECOND CUSTOM IMAGE LINK URL HERE BELOW -->
-                <!-- <img src="YOUR_BIKE_DELIVERY_IMAGE_URL_HERE" alt="Bike Delivery Ad"> -->
+               <div class="checkout-right-advert-card">
+                <!-- 🔗 PLACE YOUR FIRST IMAGE LINK URL HERE BELOW -->
+                <img src="https://i.ibb.co/kst3nK9f/IMG-7878-JPG-removebg-preview.png" alt="Left Banner Image Target">
                 
-                <span class="dispatch-bike-icon">🏍️</span>
+                <span class="dispatch-bike-icon"><!-- <img src="https://i.ibb.co/kst3nK9f/IMG-7878-JPG-removebg-preview.png" alt="Bike Delivery Ad"> --></span>
+              
                 <span class="dispatch-badge-tag">Express Routing</span>
                 <h4 style="font-weight:800; font-size:15px; margin-bottom:6px;">Motorcycle Delivery</h4>
                 <p style="font-size:13px; line-height:1.4; text-align:center;">All system purchases compile, package, and clear through high-speed localized motorcycle dispatch riders to guarantee quick delivery directly to your doorstep address!</p>
@@ -1188,14 +1190,6 @@
     </div>
     <!-- SHOP CAMZON SYSTEM CONTROLLER ENGINE SCRIPT -->
     <script>
-        // Register background engine worker to activate app install status hooks
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-            .then(reg => console.log('PWA Service Worker registered safely!'))
-            .catch(err => console.error('Worker link error:', err));
-    });
-}
         // Production Verified Live Account Public Credentials Mapping Key
         const PAYSTACK_PUB_KEY = 'pk_live_a719f1d38e972a6c4f18d650b1af4425fb945a0f'; 
 
