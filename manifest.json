@@ -1,17 +1,25 @@
 {
+  "name": "Shop Camzon",
   "short_name": "Camzon",
-  "name": "Shop Camzon Marketplace",
+  "description": "Shop Camzon Premium Marketplace",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e61e25",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "https://i.ibb.co/rfKPDjQd/favicon-png.jpg",
+      "src": "https://i.ibb.co/prW26T54/favicon.png",
+      "sizes": "192x192",
       "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/prW26T54/favicon.png",
       "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "start_url": "/index.html",
-  "background_color": "#f8f9fa",
-  "theme_color": "#e61e25",
-  "display": "standalone",
-  "orientation": "portrait"
+  ]
 }
