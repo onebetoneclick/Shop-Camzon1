@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Camzon - Premium Marketplace Platform</title>
   <link rel="icon" type="image/png" href="favicon.png">
-    
+ <link rel="manifest" href="manifest.json">
+
     <!-- Stable Paystack V1 Framework Script Mirror Integration -->
    <script src="https://js.paystack.co/v1/inline.js"></script>
     
@@ -1187,6 +1188,14 @@
     </div>
     <!-- SHOP CAMZON SYSTEM CONTROLLER ENGINE SCRIPT -->
     <script>
+        // Register background engine worker to activate app install status hooks
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('PWA Service Worker registered safely!'))
+            .catch(err => console.error('Worker link error:', err));
+    });
+}
         // Production Verified Live Account Public Credentials Mapping Key
         const PAYSTACK_PUB_KEY = 'pk_live_a719f1d38e972a6c4f18d650b1af4425fb945a0f'; 
 
