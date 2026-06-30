@@ -855,6 +855,10 @@
     </style>
 </head>
 <body>
+   
+    <button id="installAppBtn" class="btn" style="display:none;margin-left:10px;">
+📲 Install App
+</button>
     <!-- ⚡ HIGH-SPEED PERFORMANCE ACCELERATED SPINNER OVERLAY -->
     <div class="loader-overlay" id="globalProcessLoader">
         <div class="spinner"></div>
@@ -2021,6 +2025,33 @@ if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register("./sw.js")
             .then(() => console.log("Service Worker Registered"))
             .catch(err => console.log("Service Worker Error:", err));
+    });
+}
+        let deferredPrompt;
+
+const installBtn = document.getElementById("installAppBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    if (installBtn) {
+        installBtn.style.display = "inline-block";
+    }
+});
+
+if (installBtn) {
+    installBtn.addEventListener("click", async () => {
+        if (!deferredPrompt) return;
+
+        deferredPrompt.prompt();
+
+        const { outcome } = await deferredPrompt.userChoice;
+
+        console.log("Install:", outcome);
+
+        deferredPrompt = null;
+        installBtn.style.display = "none";
     });
 }
     </script>
