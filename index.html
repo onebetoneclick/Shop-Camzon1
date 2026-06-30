@@ -2016,6 +2016,13 @@ if ('serviceWorker' in navigator) {
             document.getElementById('receiptModal').style.display = 'none';
             showViewWithLoader('homepageView', 'Loading Storefront...', 'Refreshing gallery parameters...');
         }
+        if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+            .then(() => console.log("Service Worker Registered"))
+            .catch(err => console.log("Service Worker Error:", err));
+    });
+}
     </script>
 </body>
 </html>
