@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop Camzon - Secure Master Order Log Vault</title>
+    <title>Shop Camzon - Stamp Console Desk</title>
     
-    <!-- 📸 HIGH-RESOLUTION EXPORT ENGINE FOR RETRIEVING PICTURE COPIES -->
-    <script src="https://jsdelivr.net" defer></script>
-
+    <!-- 📸 HIGH-RESOLUTION HTML-TO-IMAGE ENGINE FOR PICTURE EXPORTS -->
+    <script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js" defer></script>
     <style>
         :root {
             --primary: #e61e25;
-            --bg: #f4f6f9;
+            --bg: #f8f9fa;
             --white: #ffffff;
-            --gray-border: #dee2e6;
+            --gray-border: #e9ecef;
             --text-dark: #212529;
+            --text-darker: #111111;
             --text-muted: #6c757d;
             --success: #2b8a3e;
             --danger: #dc3545;
@@ -24,297 +24,320 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
         body { background-color: var(--bg); color: var(--text-dark); padding: 30px 20px; }
 
-        /* 🔒 ADMINISTRATIVE PASSKEY ACCESS GATE STYLES */
-        .security-gate-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #111111;
-            z-index: 9999;
+        .admin-workspace-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1150px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .admin-workspace-grid { grid-template-columns: 1fr; }
+        }
+
+        .manual-entry-panel {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .panel-title { font-size: 18px; font-weight: 800; color: var(--text-darker); margin-bottom: 4px; text-transform: uppercase; }
+        .panel-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+
+        .form-group { margin-bottom: 16px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; color: var(--text-dark); }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 11px 13px; border: 1px solid var(--gray-border); border-radius: 6px; background-color: #f4f8ff; font-size: 14px; color: var(--text-darker);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #2196F3; background-color: var(--white); }
+
+        .btn { width: 100%; background-color: #25D366; color: var(--white); border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; text-transform: uppercase; margin-top: 15px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2); }
+        .btn:hover { opacity: 0.9; }
+
+        .preview-canvas-holder {
+            background: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: 20px;
+            padding: 25px;
+            position: sticky;
+            top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        /* 🖼️ CARD COMPONENT FRAME CONTAINER WORKSPACE */
+        .export-card-wrapper {
+            background: #ffffff;
+            padding: 35px 25px;
+            border-radius: 24px;
+            text-align: center;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .invoice-box {
+            border: 2px solid #eaeaea;
+            border-radius: 16px;
+            padding: 25px;
+            background: #ffffff;
+            text-align: left;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invoice-header { text-align: center; margin-bottom: 25px; border-bottom: 1px solid var(--gray-border); padding-bottom: 15px; position: relative; z-index: 1; }
+        .invoice-title { font-size: 20px; font-weight: 800; color: var(--text-darker); text-transform: uppercase; letter-spacing: 0.5px; }
+        .invoice-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; line-height: 1.5; position: relative; z-index: 1; }
+        .invoice-row strong { color: var(--text-muted); font-weight: 600; }
+        .invoice-row span { color: var(--text-dark); font-weight: 700; text-align: right; max-width: 65%; word-break: break-word; }
+        .invoice-total { border-top: 2px dashed #cccccc; padding-top: 15px; font-weight: 800; font-size: 19px; color: var(--text-darker); margin-top: 15px; position: relative; z-index: 1; }
+
+        /* 💮 RE-ANCHORED TO SIT CLEANLY AT THE DOWN / LOWER CORNER AREA */
+        .official-circular-stamp-overlay {
+            position: absolute;
+            bottom: 65px;
+            right: 45px;
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            color: #ffffff;
+            z-index: 50;
+            user-select: none;
+            pointer-events: none;
+            transform: rotate(-8deg);
+            background: transparent;
+            transition: all 0.2s ease-in-out;
         }
 
-        .gate-card {
-            background: #1e1e1e;
-            border: 1px solid #333333;
-            border-radius: 16px;
-            padding: 35px;
-            max-width: 400px;
-            width: 100%;
+        .stamp-outer-ring { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 3px dashed currentColor; }
+        .stamp-inner-ring { position: absolute; width: 84%; height: 84%; border-radius: 50%; border: 1px solid currentColor; }
+
+        .stamp-curved-text-path { position: absolute; width: 100%; height: 100%; font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.8px; }
+
+        .stamp-center-ribbon {
+            position: absolute;
+            width: 110%;
+            padding: 3px 0;
+            background: #ffffff;
+            border: 2px solid currentColor;
+            font-size: 13px;
+            font-weight: 950;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
 
-        .gate-icon { font-size: 40px; margin-bottom: 15px; color: var(--primary); }
-        .gate-title { font-size: 18px; font-weight: 800; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
-        .gate-desc { font-size: 13px; color: #aaaaaa; margin-bottom: 20px; line-height: 1.4; }
-        
-        .gate-input {
-            width: 100%; padding: 12px; border: 1px solid #444444; border-radius: 8px;
-            background: #2b2b2b; color: #ffffff; font-size: 16px; text-align: center;
-            margin-bottom: 15px; letter-spacing: 2px;
-        }
-        .gate-input:focus { outline: none; border-color: var(--primary); }
-        
-        .gate-btn {
-            width: 100%; background: var(--primary); color: #ffffff; border: none;
-            padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 700;
-            cursor: pointer; text-transform: uppercase; transition: background 0.2s;
-            display: block;
-        }
-        .gate-btn:hover { background: #b81419; }
+        /* Color profiles reflecting active state selections */
+        .stamp-theme-verified { color: rgba(43, 138, 62, 0.9); }
+        .stamp-theme-failed { color: rgba(220, 53, 69, 0.9); }
+        .stamp-theme-pending { color: rgba(245, 159, 0, 0.9); }
 
-        /* 📊 MASTER AUDIT DASHBOARD TABLE MATRIX */
-        .vault-dashboard-wrapper {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: none; /* Revealed only upon valid authorization handshake */
-        }
-
-        .vault-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            background: var(--white);
-            padding: 20px 25px;
-            border-radius: 12px;
-            border: 1px solid var(--gray-border);
-        }
-
-        .vault-title { font-size: 20px; font-weight: 800; color: #111111; text-transform: uppercase; }
-        .vault-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-
-        .table-responsive-container {
-            width: 100%;
-            background: var(--white);
-            border: 1px solid var(--gray-border);
-            border-radius: 12px;
-            overflow-x: auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
-        }
-
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; min-width: 1000px; }
-        th { background: #f8f9fa; color: #111111; font-weight: 700; padding: 14px 16px; border-bottom: 2px solid var(--gray-border); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
-        td { padding: 14px 16px; border-bottom: 1px solid var(--gray-border); color: #333333; line-height: 1.4; white-space: nowrap; }
-        tr:hover td { background: #fdfdfd; }
-
-        /* Status Badge Micro-Styles */
-        .status-pill { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
-        .status-verified { background: #e6f6ec; color: var(--success); }
-        .status-failed { background: #fde8e8; color: var(--danger); }
-        .status-pending { background: #fff9db; color: #b78103; }
-
-        .btn-action { background: none; border: 1px solid var(--gray-border); padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; color: var(--text-dark); transition: all 0.2s; }
-        .btn-action:hover { border-color: var(--primary); color: var(--primary); background: #fff5f5; }
-
-        .invoice-box { border: 2px dashed #ced4da; border-radius: 12px; padding: 20px; background: #fff; text-align: left; margin-bottom: 20px; position: relative; overflow: hidden; }
-        .invoice-header { text-align: center; margin-bottom: 15px; border-bottom: 2px solid var(--gray-border); padding-bottom: 10px; position: relative; z-index: 1; }
-        .invoice-title { font-size: 16px; font-weight: 800; text-transform: uppercase; }
-        .invoice-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; line-height: 1.5; position: relative; z-index: 1; }
-        .invoice-row strong { color: var(--text-muted); font-weight: 600; }
-        .invoice-row span { color: var(--text-dark); font-weight: 700; text-align: right; max-width: 65%; word-break: break-word; }
-        .invoice-total { border-top: 2px solid var(--gray-border); padding-top: 12px; font-weight: 800; font-size: 18px; color: var(--text-darker); margin-top: 15px; position: relative; z-index: 1; }
+        .loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.95); z-index: 5000; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .spinner { width: 44px; height: 44px; border: 4px solid #e9ecef; border-top: 4px solid var(--primary); border-radius: 50%; animation: spin 0.5s linear infinite; margin-bottom: 15px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-
-    <!-- 🔒 SECURITY AUTHENTICATION PROMPT COVER -->
-    <div class="security-gate-overlay" id="securityGateLockScreen">
-        <div class="gate-card">
-            <div class="gate-icon">🔒</div>
-            <div class="gate-title">Admin Restricted Area</div>
-            <div class="gate-desc">This data vault logs secure transaction profiles. Please input your master authorization passkey to decode the ledger.</div>
-            <input type="password" id="gatePasskeyInput" class="gate-input" placeholder="••••••••" onkeypress="handleGateKeypress(event)">
-            <button type="button" class="gate-btn" onclick="authenticateMasterAdminPasskey()">Unlock Ledger</button>
-        </div>
-    </div>
-    <!-- 📊 MASTER AUDIT DASHBOARD VIEW FRAMEWORK -->
-    <div class="vault-dashboard-wrapper" id="masterDashboardWorkspace">
-        <div class="vault-header">
-            <div>
-                <div class="vault-title">Master Order Ledger Vault</div>
-                <div class="vault-subtitle">Real-time transactional ledger logs pulled securely from localized memory node arrays.</div>
-            </div>
-            <div style="display:flex; gap:10px;">
-                <button type="button" class="btn-action" style="color:var(--danger); font-weight:700; border-color:var(--danger);" onclick="purgeAllVaultRecords()">Purge All Records</button>
-                <button type="button" class="btn-action" style="background:#111; color:#fff;" onclick="window.location.reload()">🔄 Refresh Feed</button>
-            </div>
-        </div>
-
-        <div class="table-responsive-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Invoice Ref</th>
-                        <th>Customer Name</th>
-                        <th>Contact Line</th>
-                        <th>WhatsApp Link</th>
-                        <th>Location Coordinates</th>
-                        <th>Street Address</th>
-                        <th>Items Breakdown</th>
-                        <th>Total Settled</th>
-                        <th>Payment Track Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="vaultTableLedgerBody">
-                    <!-- Javascript parses and structures order rows here natively -->
-                </tbody>
-            </table>
-        </div>
+    <div class="loader-overlay" id="processLoader">
+        <div class="spinner"></div>
+        <div style="font-weight: 700; font-size: 16px; color: var(--text-darker);">Compiling Picture Invoice...</div>
+        <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">Converting layout nodes directly into downloadable graphic asset...</div>
     </div>
 
-    <!-- 🖼️ MODAL INVOICE OVERLAY POPUP LAYER -->
-    <div class="modal-overlay" id="adminReceiptModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(4px); z-index:10000; display:none; align-items:center; justify-content:center; padding:20px;">
-        <div class="modal-card" style="background:var(--white); border-radius:24px; padding:30px; max-width:480px; width:100%; box-shadow:0 20px 40px rgba(0,0,0,0.15); text-align:center;">
+    <div class="admin-workspace-grid">
+        
+        <!-- MANUAL CONTROL INPUT FORM DESK -->
+        <div class="manual-entry-panel">
+            <div class="panel-title">Admin Review Desk</div>
+            <div class="panel-subtitle">Manually generate, override, and update receipt images to text back to WhatsApp customer channels.</div>
             
-            <!-- STYLISH HIGH-RESOLUTION RECEIPT ENGINE CONTAINER MATCHING STOREFRONT APPS -->
-            <div class="invoice-box" id="adminPrintableReceiptArea">
-                <!-- Watermark backdrop target node -->
-                <div id="receiptWatermarkGrid" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></div>
-
-                <div class="invoice-header">
-                    <div class="invoice-title">Shop Camzon Purchase Record</div>
-                    <small style="color:var(--text-muted); font-weight:700; display:block; margin-top:4px;" id="rcptRef">REF: UNKNOWN</small>
+            <form id="manualEntryForm" onsubmit="event.preventDefault(); compileInvoiceCanvasSnapshot();">
+                <!-- 🛠️ UPDATED: DIRECT BUTTON PAYMENT MODE TRACK SELECTOR BUTTON -->
+                <div class="form-group" style="background: #eaf1fe; padding: 15px; border-radius: 10px; border: 1px solid #b3ccff; margin-bottom: 20px;">
+                    <label style="color: #1976D2; font-weight: 800;">Select Payment Mode Track Label:</label>
+                    <select id="inMethod" onchange="syncPreview()" style="background-color: #ffffff; border-color: #b3ccff; font-weight: 700; color: var(--text-darker);">
+                        <option value="MTN MoMo Verified">MTN MoMo Verified</option>
+                        <option value="MTN MoMo Failed">MTN MoMo Failed</option>
+                        <option value="MTN MoMo Pending">MTN MoMo Pending</option>
+                        <option value="Orange Money Verified">Orange Money Verified</option>
+                        <option value="Orange Money Failed">Orange Money Failed</option>
+                        <option value="Orange Money Pending">Orange Money Pending</option>
+                        <option value="Cash on Delivery">Cash on Delivery</option>
+                    </select>
                 </div>
-                <div class="invoice-row"><strong>Customer Name:</strong> <span id="rcptName">---</span></div>
-                <div class="invoice-row"><strong>Email Address:</strong> <span id="rcptEmail">---</span></div>
-                <div class="invoice-row"><strong>Phone Contact:</strong> <span id="rcptPhone">---</span></div>
-                <div class="invoice-row"><strong>WhatsApp Line:</strong> <span id="rcptWhatsapp">---</span></div>
-                <div class="invoice-row"><strong>Location:</strong> <span id="rcptLocation">---</span></div>
-                <div class="invoice-row"><strong>Street Address:</strong> <span id="rcptAddress">---</span></div>
-                <div class="invoice-row"><strong>Delivery Note:</strong> <span id="rcptNotes">---</span></div>
-                <div class="invoice-row"><strong>Payment Mode:</strong> <span id="rcptPaymentMethod">---</span></div>
-                <div style="margin:12px 0; border-top:2px dotted var(--gray-border);"></div>
-                <div class="invoice-row"><strong style="color:var(--text-dark);">Package Items Summary:</strong></div>
-                <div style="font-size:13px; color:var(--text-muted); line-height:1.5; background:#f8f9fa; padding:10px; border-radius:8px; margin-bottom:10px; position:relative; z-index:1;" id="rcptItems">---</div>
-                <div class="invoice-row invoice-total" style="position:relative; z-index:1;">
-                    <span>Total Amount:</span>
-                    <span id="rcptTotalAmount" style="color:var(--primary); font-weight:800;">---</span>
+
+                <div class="form-group">
+                    <label>Receipt Reference Number:</label>
+                    <input type="text" id="inRef" required value="CZ-MTN-31467" oninput="syncPreview()">
+                </div>
+                <div class="form-group">
+                    <label>Customer Full Name:</label>
+                    <input type="text" id="inName" required value="John Doe" oninput="syncPreview()">
+                </div>
+                <div class="form-group">
+                    <label>Email Address:</label>
+                    <input type="email" id="inEmail" required value="john@gmail.com" oninput="syncPreview()">
+                </div>
+                <div class="form-row-split-dual" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div class="form-group">
+                        <label>Phone Contact:</label>
+                        <input type="text" id="inPhone" required value="8115654773" oninput="syncPreview()">
+                    </div>
+                    <div class="form-group">
+                        <label>WhatsApp Line:</label>
+                        <input type="text" id="inWhatsapp" required value="8115654773" oninput="syncPreview()">
+                    </div>
+                </div>
+                <div class="form-row-split-dual" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <div class="form-group">
+                        <label>Town / City Center:</label>
+                        <input type="text" id="inCity" required value="Ijebu-Ode" oninput="syncPreview()">
+                    </div>
+                    <div class="form-group">
+                        <label>State / Region Province:</label>
+                        <input type="text" id="inState" required value="Ogun State" oninput="syncPreview()">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Street Address Coordinates:</label>
+                    <input type="text" id="inAddress" required value="Molipa Expressway" oninput="syncPreview()">
+                </div>
+                <div class="form-group">
+                    <label>Delivery Note:</label>
+                    <input type="text" id="inNotes" value="None" oninput="syncPreview()">
+                </div>
+                <div class="form-group">
+                    <label>Package Items Summary:</label>
+                    <textarea id="inItems" rows="2" required oninput="syncPreview()">Al Tripod (4 Pcs)</textarea>
+                </div>
+                <div class="form-group">
+                    <label>Total Amount (Include currency symbol):</label>
+                    <input type="text" id="inTotal" required value="₦225,400" oninput="syncPreview()">
+                </div>
+
+                <button type="submit" class="btn">Download Stamped PNG Image</button>
+            </form>
+        </div>
+        <!-- COLUMN 2: LIVE CANVAS VISUAL DISPLAY CARD PREVIEW -->
+        <div class="preview-canvas-holder">
+            <div style="font-size: 13px; font-weight: 700; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;">Live Preview Area</div>
+            
+            <!-- EXPORT GRAPHIC CONTAINER FRAME -->
+            <div class="export-card-wrapper" id="manualReceiptBoxArea">
+                
+                <!-- 💮 THE OFFICIAL CIRCULAR COMPANY STAMP OVERLAY -->
+                <div class="official-circular-stamp-overlay stamp-theme-verified" id="lblStampWidget">
+                    <div class="stamp-outer-ring"></div>
+                    <div class="stamp-inner-ring"></div>
+                    
+                    <!-- SVG Circular Curved Text Path Matrix -->
+                    <svg class="stamp-curved-text-path" viewBox="0 0 100 100">
+                        <path id="stampTextCirclePath" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                        <text fill="currentColor">
+                            <textPath href="#stampTextCirclePath" startOffset="50%" text-anchor="middle">
+                                ★ SHOP CAMZON ★ OFFICIAL SEAL
+                            </textPath>
+                        </text>
+                    </svg>
+
+                    <!-- Center bold status text bar ribbon ribbon -->
+                    <div class="stamp-center-ribbon" id="lblStampRibbonText">VERIFIED</div>
+                </div>
+
+                <div class="invoice-box">
+                    <!-- Tiled backdrop watermark image grid container -->
+                    <div id="receiptWatermarkGrid" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;"></div>
+
+                    <div class="invoice-header">
+                        <div class="invoice-title">Shop Camzon Purchase Record</div>
+                        <small style="color: var(--text-muted); font-weight: 700; display: block; margin-top: 4px;" id="lblRef">REF: CZ-MTN-31467</small>
+                    </div>
+                    
+                    <div class="invoice-row"><strong>Customer Name:</strong> <span id="lblName">John Doe</span></div>
+                    <div class="invoice-row"><strong>Email Address:</strong> <span id="lblEmail">john@gmail.com</span></div>
+                    <div class="invoice-row"><strong>Phone Contact:</strong> <span id="lblPhone">8115654773</span></div>
+                    <div class="invoice-row"><strong>WhatsApp Line:</strong> <span id="lblWhatsapp">8115654773</span></div>
+                    <div class="invoice-row"><strong>Location:</strong> <span id="lblLocation">Ijebu-Ode, Ogun State</span></div>
+                    <div class="invoice-row"><strong>Street Address:</strong> <span id="lblAddress">Molipa Expressway</span></div>
+                    <div class="invoice-row"><strong>Delivery Note:</strong> <span id="lblNotes">None</span></div>
+                    <div class="invoice-row"><strong>Payment Mode:</strong> <span id="lblMethod">MTN MoMo Verified</span></div>
+                    
+                    <div style="margin: 15px 0; border-top: 2px dotted var(--gray-border);"></div>
+                    <div class="invoice-row"><strong style="color: var(--text-dark);">Package Items Summary:</strong></div>
+                    <div style="font-size: 13px; color: var(--text-muted); line-height: 1.5; background: var(--bg); padding: 10px; border-radius: 8px; margin-bottom: 10px; position: relative; z-index: 1;" id="lblItems">Al Tripod (4 Pcs)</div>
+                    
+                    <div class="invoice-row invoice-total">
+                        <span>Total Amount:</span>
+                        <span id="lblTotal">₦225,400</span>
+                    </div>
                 </div>
             </div>
-
-            <button type="button" class="gate-btn" style="background-color:var(--success);" onclick="downloadAdminReceiptPng()">Download PNG Image</button>
-            <button type="button" class="gate-btn" style="background-color:var(--text-muted); margin-top:8px;" onclick="closeAdminReceiptModal()">Close Window</button>
         </div>
+
     </div>
     <script>
-        // Set your master administrative secret password string here below
-        const MASTER_ADMIN_PASSKEY_STRING = "CAMZON2026"; 
-        let activeSelectedOrderDataForExport = null;
+        // Synchronizes manual text inputs onto your card preview elements
+        function syncPreview() {
+            const methodValue = document.getElementById('inMethod').value;
+            const ref = document.getElementById('inRef').value.trim();
+            const name = document.getElementById('inName').value.trim();
+            const email = document.getElementById('inEmail').value.trim();
+            const phone = document.getElementById('inPhone').value.trim();
+            const whatsapp = document.getElementById('inWhatsapp').value.trim();
+            const city = document.getElementById('inCity').value.trim();
+            const state = document.getElementById('inState').value.trim();
+            const address = document.getElementById('inAddress').value.trim();
+            const notes = document.getElementById('inNotes').value.trim();
+            const items = document.getElementById('inItems').value.trim();
+            const total = document.getElementById('inTotal').value.trim();
 
-        function handleGateKeypress(event) {
-            if (event.key === "Enter") {
-                authenticateMasterAdminPasskey();
-            }
-        }
+            document.getElementById('lblMethod').innerText = methodValue;
+            document.getElementById('lblRef').innerText = "REF: " + (ref ? ref : "UNKNOWN");
+            document.getElementById('lblName').innerText = name ? name : "---";
+            document.getElementById('lblEmail').innerText = email ? email : "---";
+            document.getElementById('lblPhone').innerText = phone ? phone : "---";
+            document.getElementById('lblWhatsapp').innerText = whatsapp ? whatsapp : "---";
+            document.getElementById('lblLocation').innerText = (city || state) ? `${city}, ${state}` : "---";
+            document.getElementById('lblAddress').innerText = address ? address : "---";
+            document.getElementById('lblNotes').innerText = notes ? notes : "None";
+            document.getElementById('lblItems').innerText = items ? items : "---";
+            document.getElementById('lblTotal').innerText = total ? total : "---";
 
-        // Authenticates the input passkey token map smoothly before revealing table grids
-        function authenticateMasterAdminPasskey() {
-            const inputVal = document.getElementById('gatePasskeyInput').value.trim();
+            const stampWidget = document.getElementById('lblStampWidget');
+            const stampRibbon = document.getElementById('lblStampRibbonText');
+            const methodNode = document.getElementById('lblMethod');
 
-            if (inputVal === MASTER_ADMIN_PASSKEY_STRING) {
-                // Clear the black security cover and assemble table components instantly
-                document.getElementById('securityGateLockScreen').style.display = "none";
-                document.getElementById('masterDashboardWorkspace').style.display = "block";
-                compileLiveVaultTableLedger();
-            } else {
-                alert("Security Authorization Failed: Invalid administrative credentials.");
-                document.getElementById('gatePasskeyInput').value = "";
-            }
-        }
+            stampWidget.className = "official-circular-stamp-overlay"; // Reset layout classes
 
-        // Pulls data straight from shared domain memory logs to build spreadsheet table rows
-        function compileLiveVaultTableLedger() {
-            const tbody = document.getElementById('vaultTableLedgerBody');
-            if (!tbody) return;
-
-            // Reads from the exact same shared hardware memory registry key used by your storefront app
-            let orders = JSON.parse(localStorage.getItem('megaShopLocalOrders')) || [];
-
-            if (orders.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="11" style="text-align:center; padding:40px; color:var(--text-muted); font-weight:600;">
-                            No order records logged inside the shared hardware memory vault yet.
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-
-            tbody.innerHTML = "";
-            orders.forEach((order, index) => {
-                let badgeClass = "status-pending";
-                if (order.paymentMethodString.includes("Verified") || order.paymentMethodString.includes("SUCCESSFUL")) {
-                    badgeClass = "status-verified";
-                } else if (order.paymentMethodString.includes("Failed") || order.paymentMethodString.includes("FAILED")) {
-                    badgeClass = "status-failed";
-                }
-
-                tbody.innerHTML += `
-                    <tr id="vaultRow_${index}">
-                        <td><strong>${order.date || '---'}</strong></td>
-                        <td style="font-family:monospace; font-weight:700; color:#111;">${order.reference || '---'}</td>
-                        <td>${order.name || '---'}</td>
-                        <td>${order.phone || '---'}</td>
-                        <td><a href="https://wa.me{(order.whatsapp || '').replace(/[^0-9]/g, '')}" target="_blank" style="color:#25D366; font-weight:700; text-decoration:none;">💬 Chat Client</a></td>
-                        <td>${order.cityState || '---'}</td>
-                        <td style="max-width:200px; overflow:hidden; text-overflow:ellipsis;" title="${order.address}">${order.address || '---'}</td>
-                        <td style="max-width:250px; overflow:hidden; text-overflow:ellipsis;" title="${order.summary}">${order.summary || '---'}</td>
-                        <td style="font-weight:800; color:var(--primary); font-size:14px;">${order.displayTotal || '---'}</td>
-                        <td><span class="status-pill ${badgeClass}">${order.paymentMethodString || '---'}</span></td>
-                        <td>
-                            <!-- NEW MASTER ACTIONS: View Receipt popup alongside Delete -->
-                            <button type="button" class="btn-action" style="color:var(--success); border-color:var(--success); margin-right:4px;" onclick="popOpenReceiptModalCanvas(${index})">👁️ View Receipt</button>
-                            <button type="button" class="btn-action" style="color:var(--danger);" onclick="deleteSingleVaultRow(${index})">Delete</button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        // DECODES LOG ARRAY ELEMENT AND BINDS VALUES DIRECTLY TO MARKUP LABELS
-        function popOpenReceiptModalCanvas(index) {
-            let orders = JSON.parse(localStorage.getItem('megaShopLocalOrders')) || [];
-            activeSelectedOrderDataForExport = orders[index];
-            if (!activeSelectedOrderDataForExport) return;
-
-            document.getElementById('rcptRef').innerText = `REF: ${activeSelectedOrderDataForExport.reference}`;
-            document.getElementById('rcptName').innerText = activeSelectedOrderDataForExport.name;
-            document.getElementById('rcptEmail').innerText = activeSelectedOrderDataForExport.email;
-            document.getElementById('rcptPhone').innerText = activeSelectedOrderDataForExport.phone;
-            document.getElementById('rcptWhatsapp').innerText = activeSelectedOrderDataForExport.whatsapp;
-            document.getElementById('rcptLocation').innerText = activeSelectedOrderDataForExport.cityState;
-            document.getElementById('rcptAddress').innerText = activeSelectedOrderDataForExport.address;
-            document.getElementById('rcptNotes').innerText = activeSelectedOrderDataForExport.notes || "None";
-            document.getElementById('rcptItems').innerText = activeSelectedOrderDataForExport.summary;
-            document.getElementById('rcptTotalAmount').innerText = activeSelectedOrderDataForExport.displayTotal;
-            
-            const methodNode = document.getElementById('rcptPaymentMethod');
-            methodNode.innerText = activeSelectedOrderDataForExport.paymentMethodString;
-
-            if (activeSelectedOrderDataForExport.paymentMethodString.includes("FAILED") || activeSelectedOrderDataForExport.paymentMethodString.includes("Failed")) {
-                methodNode.style.color = "var(--danger)";
-            } else {
+            if (methodValue.includes("Verified")) {
+                stampRibbon.innerText = "VERIFIED";
+                stampWidget.classList.add('stamp-theme-verified');
                 methodNode.style.color = "var(--success)";
+            } else if (methodValue.includes("Failed")) {
+                stampRibbon.innerText = "FAILED";
+                stampWidget.classList.add('stamp-theme-failed');
+                methodNode.style.color = "var(--danger)";
+            } else if (methodValue.includes("Pending")) {
+                stampRibbon.innerText = "PENDING";
+                stampWidget.classList.add('stamp-theme-pending');
+                methodNode.style.color = "var(--warning)";
+            } else {
+                stampRibbon.innerText = "PENDING";
+                stampWidget.classList.add('stamp-theme-pending');
+                methodNode.style.color = "var(--text-darker)";
             }
-
-            applyTiledReceiptBackground("https://ibb.co");
-            document.getElementById('adminReceiptModal').style.display = "flex";
         }
 
-        function closeAdminReceiptModal() {
-            document.getElementById('adminReceiptModal').style.display = "none";
-            activeSelectedOrderDataForExport = null;
-        }
-
-        // Tiled split background graphic generator using brand favicon link
+        // Tiled split image watermark background generator using brand favicon link
         function applyTiledReceiptBackground(imgUrl) {
             const gridContainer = document.getElementById('receiptWatermarkGrid');
             if (!gridContainer) return;
@@ -322,11 +345,11 @@
             gridContainer.innerHTML = "";
             gridContainer.style.display = 'grid';
             gridContainer.style.gridTemplateColumns = 'repeat(4, 1fr)';
-            gridContainer.style.gridAutoRows = '65px'; gridContainer.style.gap = '10px';
-            gridContainer.style.padding = '10px'; gridContainer.style.opacity = '0.03';
+            gridContainer.style.gridAutoRows = '80px'; gridContainer.style.gap = '15px';
+            gridContainer.style.padding = '15px'; gridContainer.style.opacity = '0.03';
             gridContainer.style.overflow = 'hidden';
 
-            for (let i = 0; i < 16; i++) {
+            for (let i = 0; i < 24; i++) {
                 gridContainer.innerHTML += `
                     <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
                         <img src="${imgUrl}" style="width:100%; height:100%; object-fit:contain;">
@@ -335,40 +358,46 @@
             }
         }
 
-        // Downloads the rendered canvas frame directly as a picture file
-        function downloadAdminReceiptPng() {
-            if (!activeSelectedOrderDataForExport) return;
-            const targetElement = document.getElementById('adminPrintableReceiptArea');
+        // Protective 6-second canvas snapshot export engine
+        function compileInvoiceCanvasSnapshot() {
+            const targetElement = document.getElementById('manualReceiptBoxArea');
+            const loader = document.getElementById('processLoader');
+            const ref = document.getElementById('inRef').value.trim();
             
+            loader.style.display = 'flex';
+            let hasCompleted = false;
+
+            const failsafeGuardTimer = setTimeout(() => {
+                if (!hasCompleted) {
+                    loader.style.display = 'none';
+                    alert("Timeout Notice: Image conversion took too long on this local browser thread.");
+                }
+            }, 6000); 
+
             htmlToImage.toPng(targetElement, { quality: 1.0, backgroundColor: '#ffffff' })
                 .then(function (dataUrl) {
+                    hasCompleted = true;
+                    clearTimeout(failsafeGuardTimer);
+
                     const link = document.createElement('a');
-                    link.download = `Invoice-Vault-${activeSelectedOrderDataForExport.reference}.png`;
+                    link.download = `Receipt-Stamp-${ref ? ref : 'MANUAL'}.png`;
                     link.href = dataUrl;
                     link.click();
+
+                    loader.style.display = 'none';
                 })
                 .catch(function (error) {
-                    alert("Error exporting layout frame: " + error.message);
+                    hasCompleted = true;
+                    clearTimeout(failsafeGuardTimer);
+                    loader.style.display = 'none';
+                    alert("Error processing layout image calculation: " + error.message);
                 });
         }
 
-        // Clears a single selective invoice line out of memory logs
-        function deleteSingleVaultRow(index) {
-            if (confirm("Are you sure you want to permanently delete this specific customer record out of the server vault logs?")) {
-                let orders = JSON.parse(localStorage.getItem('megaShopLocalOrders')) || [];
-                orders.splice(index, 1);
-                localStorage.setItem('megaShopLocalOrders', JSON.stringify(orders));
-                compileLiveVaultTableLedger(); 
-            }
-        }
-
-        // Master switch wipe routine execution path
-        function purgeAllVaultRecords() {
-            if (confirm("🚨 CRITICAL WARNING: You are about to clear the ENTIRE order log ledger. This will clear customer data logs permanently. Proceed?")) {
-                localStorage.removeItem('megaShopLocalOrders');
-                compileLiveVaultTableLedger();
-            }
-        }
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTiledReceiptBackground("https://ibb.co");
+            syncPreview(); // Force sync alignment on boot up
+        });
     </script>
 </body>
 </html>
