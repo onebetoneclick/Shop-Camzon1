@@ -112,6 +112,44 @@
             overflow-x: hidden;
             position: relative;
         }
+		/* Top Alert Banner Styling - Red Theme */
+        .top-instruction-banner {
+            background-color: #D32F2F; /* Alert Red */
+            color: #FFFFFF;            /* White text for sharp contrast */
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            width: 100%;
+        }
+ /* Continuous text container */
+        .banner-marquee {
+            width: 100%;
+        }
+
+        /* WhatsApp Button inside Marquee */
+        .whatsapp-btn {
+            background-color: #25D366; /* Official WhatsApp Green */
+            color: white;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            display: inline-block;
+            border: 1px solid #ffffff;
+            transition: background 0.2s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128C7E; /* Darker green on hover */
+        }
+
+        /* Keep your existing widget styling below the banner */
+        .momo-instructions-panel {
+            padding: 20px;
+            margin-top: 20px;
+        }
 
         /* --- 🔴 GLOBAL CENTRAL BACKGROUND LOGO WATERMARK --- */
         body::before {
@@ -1004,6 +1042,18 @@
     </style>
 </head>
 <body>
+	<!-- 🔔 TOP MOVING INSTRUCTION BANNER WITH WHATSAPP BUTTON -->
+    <div class="top-instruction-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="6" class="banner-marquee">
+            ⚠️ SYSTEM NOTICE: Pls be note the Payment to MTN Momo is currently not available and Payment to Orange Money is currently not available, Trying may lead to loosing of money, kindly use the Cash on Delivery Payment Method or Contact us on WhatsApp: 
+            <a href="https://wa.me" target="_blank" class="whatsapp-btn">💬 Chat on WhatsApp</a>
+        </marquee>
+    </div>
+
+    <!-- MAIN PAGE CONTENT -->
+    <div class="momo-instructions-panel" id="momoInstructionsWidget"> 
+        <div class="momo-instruction-title" id="momoInstructionsHeader"><h2>MTN MoMo API Interface</h2></div> 
+    </div>
     <!-- ⚡ HIGH-SPEED PERFORMANCE ACCELERATED SPINNER OVERLAY -->
     <div class="loader-overlay" id="globalProcessLoader">
         <div class="spinner"></div>
@@ -1288,7 +1338,8 @@
                         <div class="momo-instruction-title" id="momoInstructionsHeader">MTN MoMo API Interface</div>
                         <div class="momo-instruction-text" id="momoInstructionsBody">
                             Submitting will establish a live connection with the active network carrier gateway to dispatch an electronic payment push authorization request directly onto your smartphone.
-                        </div>
+                       		Pls be note the the MTN Momo is not available at the mooment pls try again later
+						</div>
                     </div>
 
                     <!-- 🔒 DATA TERMS POLICY AGREEMENT RUNNER -->
@@ -2329,7 +2380,7 @@
                                     `📁 _Note: An image invoice version of this document has been generated and downloaded to your device storage blocks automatically!_`;
             
             const encodedText = encodeURIComponent(whatsappMessage);
-            window.open(`https://wa.me/2348115654773?text=${encodedText}`, "_blank");
+            window.open(`https://wa.me/237682996056?text=${encodedText}`, "_blank");
         }
 
         function closeReceiptModal() {
