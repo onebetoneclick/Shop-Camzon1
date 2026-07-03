@@ -1045,7 +1045,7 @@
 	<!-- 🔔 TOP MOVING INSTRUCTION BANNER WITH WHATSAPP BUTTON -->
     <div class="top-instruction-banner">
         <marquee behavior="scroll" direction="left" scrollamount="6" class="banner-marquee">
-            ⚠️ SYSTEM NOTICE: Pls be note the Payment to MTN Momo is currently not available and Payment to Orange Money is currently not available, Trying may lead to loosing of money, kindly use the Cash on Delivery Payment Method or Contact us on WhatsApp: 
+            ⚠️ SYSTEM NOTICE: Please Note that Payment Method is not available at the moment kindly chat us using the message icon below or Contact us on WhatsApp: 
             <a href="https://wa.me" target="_blank" class="whatsapp-btn">💬 Chat on WhatsApp</a>
         </marquee>
     </div>
@@ -2374,9 +2374,9 @@
                                     `*Location:* ${latestTransactionData.cityState}\n` +
                                     `*Street Address:* ${latestTransactionData.address}\n` +
                                     `*Special Note:* ${latestTransactionData.notes}\n` +
-                                    `*Settlement Mode:* ${latestTransactionData.paymentMethodString}\n\n` +
-                                    `*Items Breakdown:* ${latestTransactionData.summary}\n` +
-                                    `*Total Settled:* ${latestTransactionData.displayTotal}\n\n` +
+                                    `*Settlement Method:* ${latestTransactionData.paymentMethodString}\n\n` +
+                                    `*Product:* ${latestTransactionData.summary}\n` +
+                                    `*Total Payment:* ${latestTransactionData.displayTotal}\n\n` +
                                     `📁 _Note: An image invoice version of this document has been generated and downloaded to your device storage blocks automatically!_`;
             
             const encodedText = encodeURIComponent(whatsappMessage);
