@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Shop Camzon</title>
+    <style>
+        :root {
+            --primary: #e61e25;
+            --primary-dark: #b81419;
+            --bg: #f5f6fa;
+            --white: #ffffff;
+            --gray-border: rgba(0, 0, 0, 0.06);
+            --text-dark: #2f3542;
+            --text-darker: #1e272e;
+            --text-muted: #747d8c;
+            --shadow-card: 0 10px 30px rgba(30, 39, 46, 0.04), 0 1px 8px rgba(0, 0, 0, 0.02);
+            --shadow-active: 0 20px 40px rgba(230, 30, 37, 0.06), 0 1px 12px rgba(230, 30, 37, 0.02);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 40px 15px;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* 🌀 HYPER-REALISTIC HARDWARE ACCELERATED FLOATING CORNER SHAPES */
+        .animated-bg-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            opacity: 0.25;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .shape-top-left {
+            top: -100px;
+            left: -100px;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--primary) 0%, #ff6b6b 100%);
+            animation: driftPulseFluid 8s ease-in-out infinite alternate;
+        }
+
+        .shape-bottom-right {
+            bottom: -120px;
+            right: -120px;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #ff4d52 0%, var(--primary-dark) 100%);
+            animation: driftPulseFluid 11s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes driftPulseFluid {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.2; }
+            50% { transform: translate(30px, -20px) scale(1.15) rotate(45deg); opacity: 0.35; }
+            100% { transform: translate(-20px, 40px) scale(0.95) rotate(90deg); opacity: 0.25; }
+        }
+
+        .terms-container {
+            max-width: 780px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* 🔴 APP SIGNATURE RED HERO PACK OVERLAY BANNER */
+        .terms-hero-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #ff4d52 100%);
+            color: var(--white);
+            padding: 45px 30px;
+            border-radius: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 12px 35px rgba(230, 30, 37, 0.15);
+            animation: bannerPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle shiny glass reflection running across the red banner banner */
+        .terms-hero-banner::after {
+            content: "";
+            position: absolute;
+            top: -50%; left: -60%; width: 30%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            animation: glossShine 4s linear infinite;
+        }
+
+        @keyframes glossShine {
+            0% { left: -60%; }
+            100% { left: 140%; }
+        }
+
+        @keyframes bannerPop {
+            0% { transform: scale(0.92); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .terms-main-title {
+            font-size: 26px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .terms-subtitle {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-top: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 📋 ANIMATED ACCORDION PAPER-STACK CARD SLOTS */
+        .terms-stack-card {
+            background-color: var(--white);
+            border: 1px solid var(--gray-border);
+            border-radius: 16px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow-card);
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: cardReveal 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes cardReveal {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Dynamic stair-step animation rendering offsets for cards */
+        .terms-stack-card:nth-child(3) { animation-delay: 0.05s; }
+        .terms-stack-card:nth-child(4) { animation-delay: 0.1s; }
+        .terms-stack-card:nth-child(5) { animation-delay: 0.15s; }
+        .terms-stack-card:nth-child(6) { animation-delay: 0.2s; }
+        .terms-stack-card:nth-child(7) { animation-delay: 0.25s; }
+
+        .terms-card-header {
+            padding: 22px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+
+        .terms-card-header:hover {
+            background-color: rgba(230, 30, 37, 0.02);
+        }
+
+        .terms-card-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-darker);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: color 0.25s ease;
+        }
+
+        .terms-card-title::before {
+            content: "";
+            width: 4px; height: 16px;
+            background-color: var(--primary);
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        .terms-arrow-indicator {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-muted);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), color 0.3s ease;
+        }
+
+        /* --- ACTIVE ACCORDION INTERACTIVE STYLES --- */
+        .terms-stack-card.card-is-expanded {
+            border-color: rgba(230, 30, 37, 0.3);
+            box-shadow: var(--shadow-active);
+            transform: scale(1.01);
+        }
+
+        .terms-stack-card.card-is-expanded .terms-card-title {
+            color: var(--primary);
+        }
+
+        .terms-stack-card.card-is-expanded .terms-arrow-indicator {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        /* Smooth slide toggle panel box */
+        .terms-card-sliding-panel {
+            max-height: 0;
+            transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            background-color: var(--white);
+        }
+
+        .terms-panel-inner-content {
+            padding: 0 25px 25px 25px;
+            font-size: 14px;
+            color: var(--text-dark);
+            text-align: justify;
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .terms-stack-card.card-is-expanded .terms-card-sliding-panel {
+            max-height: 500px;
+        }
+
+        .terms-stack-card.card-is-expanded .terms-panel-inner-content {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.1s;
+        }
+
+        .terms-list {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .terms-list li {
+            margin-bottom: 8px;
+        }
+
+        .btn-return-home {
+            display: block;
+            text-align: center;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-top: 35px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 15px rgba(230, 30, 37, 0.15);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-return-home:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(230, 30, 37, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- KINETIC CORNER ABSTRACT BACKGROUND ELEMENTS SHAPES -->
+    <div class="animated-bg-shape shape-top-left"></div>
+    <div class="animated-bg-shape shape-bottom-right"></div>
+
+    <div class="terms-container">
+        
+        <!-- 🔴 HEADER OVERLAY BANNER -->
+        <div class="terms-hero-banner">
+            <h1 class="terms-main-title">Terms & Conditions</h1>
+            <div class="terms-subtitle">Shop Camzon Governance Framework • July 2026</div>
+        </div>
+
+        <div style="margin-bottom: 25px;">
+            <a href="index.html" style="color: var(--primary); font-weight: 800; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 6px;">← Return to Storefront</a>
+        </div>
+
+        <!-- ACCORDION WRAPPER STACK GRIDS START -->
+        <div id="termsAccordionStack">
+           <!-- CARD 1: SERVICES -->
+            <div class="terms-stack-card">
+                <div class="terms-card-header" onclick="toggleAccordionTab(this)">
+                    <span class="terms-card-title">1. Global Operations & Agreement Use</span>
+                    <span class="terms-arrow-indicator">▼</span>
+                </div>
+                <div class="terms-card-sliding-panel">
+                    <div class="terms-panel-inner-content">
+                        <p>Welcome to Shop Camzon. This governance framework dictates the terms, requirements, and compliance parameters governing your complete use of this marketplace store. By checking boxes, adding products to your bag, or submitting transaction fields, you accept these terms in full.</p>
+                        <p style="margin-top:10px;">We maintain strict administrative oversight and reserve the absolute right to rewrite or re-modify these parameters to align with regional West African market changes without prior notice.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2: BUNDLES -->
+            <div class="terms-stack-card">
+                <div class="terms-card-header" onclick="toggleAccordionTab(this)">
+                    <span class="terms-card-title">2. Product Inventory & Price Multipliers</span>
+                    <span class="terms-arrow-indicator">▼</span>
+                </div>
+                <div class="terms-card-sliding-panel">
+                    <div class="terms-panel-inner-content">
+                        <p>All items in our trending catalog grids—including our premium face-tracking automatic motorized AI Tripods—are distributed subject to immediate wholesale inventory availability metrics.</p>
+                        <p style="margin-top:10px;">Our multi-unit discount tier structure scales strictly based on package volume rules. Individual fine-tuning pieces merge automatically to protect standard transactional integrity, and values cannot be altered arbitrarily at checkout.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3: CURRENCIES -->
+            <div class="terms-stack-card">
+                <div class="terms-card-header" onclick="toggleAccordionTab(this)">
+                    <span class="terms-card-title">3. Sliding Base Currency Multipliers</span>
+                    <span class="terms-arrow-indicator">▼</span>
+                </div>
+                <div class="terms-card-sliding-panel">
+                    <div class="terms-panel-inner-content">
+                        <p>Our store features a 3-position currency track selector switch to display pricing cleanly across localized trade zones. Conversions automatically scale between the following units:</p>
+                        <ul class="terms-list">
+                            <li><strong>CFA Francs (XAF/XOF):</strong> Serving as our baseline pricing evaluation index code.</li>
+                            <li><strong>United States Dollars ($ USD):</strong> Standard global settlement currency conversion matrix.</li>
+                            <li><strong>Nigerian Naira (₦ NGN):</strong> Calculated dynamically to accommodate regional merchants.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4: ELECTRONIC TRANSACTIONS -->
+            <div class="terms-stack-card">
+                <div class="terms-card-header" onclick="toggleAccordionTab(this)">
+                    <span class="terms-card-title">4. Live Carrier API Settlement Keys</span>
+                    <span class="terms-arrow-indicator">▼</span>
+                </div>
+                <div class="terms-card-sliding-panel">
+                    <div class="terms-panel-inner-content">
+                        <p>To preserve complete data security across our delivery zones, our transaction processing matrix handles electronic network requests through direct carrier connections:</p>
+                        <p style="margin-top:10px;">Choosing MTN MoMo or Orange Money sends direct request payloads securely to carrier clearance servers using your configuration key variables. This forces an immediate authorization push prompt onto the buyer's smartphone screen requesting their wallet security PIN code.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 5: RECONSTRUCTION -->
+            <div class="terms-stack-card">
+                <div class="terms-card-header" onclick="toggleAccordionTab(this)">
+                    <span class="terms-card-title">5. Order Logging & Fail-Safe History</span>
+                    <span class="terms-arrow-indicator">▼</span>
+                </div>
+                <div class="terms-card-sliding-panel">
+                    <div class="terms-panel-inner-content">
+                        <p>If a mobile money payment is verified successfully, the system bakes a successful receipt record into the device. If a payment fails or times out, our try/catch exception protocols still save the profile log safely inside your device history to provide transparent proof of the server response, but flag it clearly in dark red text as <strong>"FAILED"</strong>.</p>
+                        <p style="margin-top:10px;">Selecting Cash on Delivery (COD) bypasses API networks entirely for free. All final balances are collected by our physical motorcycle riders during doorstep drop-offs.</p>
+                    </div>
+                </div>
+            </div>
+              <!-- CARD 6: AI CHAT AUTOMATIONS (EXPANDED REGULATORY DATA) -->
+            <div class="terms-stack-card">
+                <div class="terms-card-header" onclick="toggleAccordionTab(this)">
+                    <span class="terms-card-title">6. AI Message Board & Automated Assistance</span>
+                    <span class="terms-arrow-indicator">▼</span>
+                </div>
+                <div class="terms-card-sliding-panel">
+                    <div class="terms-panel-inner-content">
+                        <p>By interacting with the built-in message board panel on <strong>Shop Camzon</strong>, you acknowledge that conversations are automatically assisted around the clock by our conversational AI Shopping Assistant. This automated tool is trained to interpret technical item specifications, suggest product bundle setups, and address common transactional inquiries instantly.</p>
+                        <p style="margin-top:10px;">While our AI assistant processes text logs to help secure rapid resolutions, automated messages are for support purposes only and do not modify binding pricing contracts or shipment scheduling guarantees.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 7: CUSTOMER CARE CHANNELS -->
+            <div class="terms-stack-card">
+                <div class="terms-card-header" onclick="toggleAccordionTab(this)">
+                    <span class="terms-card-title">7. Customer Care Handover & Escalation Protocols</span>
+                    <span class="terms-arrow-indicator">▼</span>
+                </div>
+                <div class="terms-card-sliding-panel">
+                    <div class="terms-panel-inner-content">
+                        <p>We combine AI automation with human expertise. If an issue requires personal attention or specialized order verification, our system triggers a clean, configurable handover directly to a live human support operator.</p>
+                        <p style="margin-top:10px;">Our active human support team remains available to oversee delivery profile changes, review failed transaction records, and resolve edge-case technical discrepancies. All communication historical logs are kept strictly private under decentralized storage frameworks to protect user identification variables.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- ACCORDION WRAPPER STACK GRIDS END -->
+
+        <!-- BOTTOM PRIMARY BRAND TRIGGER BUTTON -->
+        <button class="btn-return-home" onclick="window.location.href='index.html'">I Accept terms & conditions</button>
+
+    </div>
+
+    <!-- 🎬 PHYSICS-BASED ACCORDION TOGGLE ANIMATION SCRIPT -->
+    <script>
+        function toggleAccordionTab(element) {
+            const currentCard = element.parentElement;
+            const isExpanded = currentCard.classList.contains('card-is-expanded');
+            
+            // Collapse all other active stack panels to create a crisp paper-shuffling effect
+            document.querySelectorAll('.terms-stack-card').forEach(card => {
+                card.classList.remove('card-is-expanded');
+                const panel = card.querySelector('.terms-card-sliding-panel');
+                if (panel) panel.style.maxHeight = null;
+            });
+
+            // Slide open the target panel using smooth max-height adjustments
+            if (!isExpanded) {
+                currentCard.classList.add('card-is-expanded');
+                const panel = currentCard.querySelector('.terms-card-sliding-panel');
+                if (panel) {
+                    panel.style.maxHeight = panel.scrollHeight + 40 + "px";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
