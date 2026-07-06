@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1045,7 +1046,7 @@
 	<!-- 🔔 TOP MOVING INSTRUCTION BANNER WITH WHATSAPP BUTTON -->
     <div class="top-instruction-banner">
         <marquee behavior="scroll" direction="left" scrollamount="6" class="banner-marquee">
-            ⚠️ SYSTEM NOTICE: Please Note that Payment Method is not available at the moment Free Delivery! Free Delivery!! Free Delivery!!! kindly chat us using the message icon below or Contact us on WhatsApp: 
+            ⚠️ SYSTEM NOTICE: Please Note that Payment Method is not available at the moment kindly chat us using the message icon below or Contact us on WhatsApp: 
             <a href="https://wa.me" target="_blank" class="whatsapp-btn">💬 Chat on WhatsApp</a>
         </marquee>
     </div>
@@ -1303,7 +1304,7 @@
                             <input type="text" id="stateRegionField" required placeholder="State">
                         </div>
                         <div class="form-group">
-                            <label for="shippingAddress" id="lblFormAddress">Home or Office Delivery Address</label>
+                            <label for="shippingAddress" id="lblFormAddress">Home or Office Street Address</label>
                             <input type="text" id="shippingAddress" required placeholder="Street name, flat info, building number">
                         </div>
                     </div>
@@ -2150,7 +2151,7 @@
             const phone = document.getElementById('phoneNumber').value.trim();
             const whatsapp = document.getElementById('whatsappNumber').value.trim();
             const townCity = document.getElementById('townCityField').value.trim();
-            const stateRegion = document.getElementById('stateRegionField').value.trim();
+            const state = document.getElementById('stateRegionField').value.trim();
             const address = document.getElementById('shippingAddress').value.trim();
             const notes = document.getElementById('additionalNotesField').value.trim();
             const totalCfaAmount = getTotalCartAmountCFA();
@@ -2160,7 +2161,7 @@
                 return;
             }
 
-            if (!email || !name || !phone || !whatsapp || !townCity || !stateRegion || !address) {
+            if (!email || !name || !phone || !whatsapp || !townCity || !state || !address) {
                 triggerError("Incomplete Profile", "Please properly fill out all input fields.");
                 return;
             }
@@ -2175,17 +2176,17 @@
 
                 if (chosenPaymentMethodChannel === 'cash_on_delivery') {
                     // COD paths clear instantly and cleanly for free!
-                    executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, stateRegion, address, notes, totalCfaAmount, "Pending Cash On Delivery", "SUCCESSFUL");
+                    executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, "Pending Cash On Delivery", "SUCCESSFUL");
                 } else if (chosenPaymentMethodChannel === 'mtn_momo') {
-                    executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, stateRegion, address, notes, totalCfaAmount, "MTN MoMo API", MTN_MOMO_PRODUCTION_API_KEY, "https://mtn.com");
+                    executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, "MTN MoMo API", MTN_MOMO_PRODUCTION_API_KEY, "https://mtn.com");
                 } else {
-                    executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, stateRegion, address, notes, totalCfaAmount, "Orange Money API", ORANGE_MONEY_PRODUCTION_API_KEY, "https://orange.com");
+                    executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, staten, address, notes, totalCfaAmount, "Orange Money API", ORANGE_MONEY_PRODUCTION_API_KEY, "https://orange.com");
                 }
             }, 2500);
         }
 
         // ⚡ GENUINE CARRIER GATEWAY API PIPELINE (MTN & Orange Money Handshake Engine)
-        function executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, stateRegion, address, notes, totalCfaAmount, providerLabel, secretApiKey, endpointUrl) {
+        function executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, providerLabel, secretApiKey, endpointUrl) {
             const apiModal = document.getElementById('carrierApiProcessingModal');
             document.getElementById('apiModalTitle').innerText = `Connecting ${providerLabel}...`;
             document.getElementById('apiModalMessage').innerText = `Sending payment token payload requests to secure wallet destination node layers for phone number line: ${phone}. Please verify on screen.`;
@@ -2213,7 +2214,7 @@
             .then(response => {
                 if (response.ok || response.status === 201 || response.status === 200) {
                     apiModal.style.display = "none";
-                    executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, stateRegion, address, notes, totalCfaAmount, `${providerLabel} Verified`, "SUCCESSFUL");
+                    executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, `${providerLabel} Verified`, "SUCCESSFUL");
                 } else {
                     throw new Error("Carrier authorization transaction was declined or timed out.");
                 }
@@ -2223,12 +2224,12 @@
                 console.warn("API Node Handshake Error Context:", error.message);
                 apiModal.style.display = "none";
                 
-                executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, stateRegion, address, notes, totalCfaAmount, `${providerLabel} FAILED`, "FAILED");
+                executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, `${providerLabel} FAILED`, "FAILED");
             });
         }
 
         // COMPILES DATA RECEPTORS AND DISPATCHES DIALOG SYSTEM BOX WINDOW OVERLAYS
-        function executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, stateRegion, address, notes, totalCfaAmount, statusString, stateMetricResult) {
+        function executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, statusString, stateMetricResult) {
             const itemsSummary = cart.map(item => `${item.name} (${item.quantity} Pcs)`).join(", ");
             const invoiceFormattedTotal = formatCurrencyDisplay(totalCfaAmount);
             const formattedDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
@@ -2240,7 +2241,7 @@
                 email: email,
                 phone: phone,
                 whatsapp: whatsapp,
-                cityState: `${townCity}, ${stateRegion}`,
+                cityState: `${townCity}, ${state}`,
                 address: address,
                 notes: notes ? notes : "None",
                 paymentMethodString: `${statusString} [${stateMetricResult}]`,
@@ -2375,7 +2376,7 @@
                                     `*Contact Line:* ${latestTransactionData.phone}\n` +
                                     `*WhatsApp Line:* ${latestTransactionData.whatsapp}\n` +
                                     `*Location:* ${latestTransactionData.cityState}\n` +
-                                    `*Street Address:* ${latestTransactionData.address}\n` +
+                                    `*Address:* ${latestTransactionData.address}\n` +
                                     `*Special Note:* ${latestTransactionData.notes}\n` +
                                     `*Payment Method:* ${latestTransactionData.paymentMethodString}\n\n` +
                                     `*Product:* ${latestTransactionData.summary}\n` +
@@ -2427,12 +2428,12 @@ if (installBtn) {
 
 
 	
-
+</script>
 
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
-_smartsupp.key = '0e0ead24a72faf237a2770cb9361d178c0e940ad';
+_smartsupp.key = '33a5b739c4ade694b994647b9bb85d73662da1db';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
   s=d.getElementsByTagName('script')[0];
