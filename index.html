@@ -1053,7 +1053,7 @@
 
     <!-- MAIN PAGE CONTENT -->
     <div class="momo-instructions-panel" id="momoInstructionsWidget"> 
-        <div class="momo-instruction-title" id="momoInstructionsHeader"><h2>MTN MoMo API Interface</h2></div> 
+        <div class="momo-instruction-title" id="momoInstructionsHeader"><h2>Chat us on WhatsApp</h2></div> 
     </div>
     <!-- ⚡ HIGH-SPEED PERFORMANCE ACCELERATED SPINNER OVERLAY -->
     <div class="loader-overlay" id="globalProcessLoader">
@@ -1321,11 +1321,11 @@
                         <div class="payment-methods-grid">
                             <div class="payment-method-card active-method" id="payCard_momo" onclick="selectLocalPaymentChannel('mtn_momo')">
                                 <span class="payment-method-icon">💛</span>
-                                <span class="payment-method-title">MTN MoMo</span>
+                                <span class="payment-method-title">Chat on WhatsApp to make Payment</span>
                             </div>
                             <div class="payment-method-card" id="payCard_orange" onclick="selectLocalPaymentChannel('orange_money')">
                                 <span class="payment-method-icon">🍊</span>
-                                <span class="payment-method-title">Orange Money</span>
+                                <span class="payment-method-title">Chat on WhatsApp to make Payment</span>
                             </div>
                             <div class="payment-method-card" id="payCard_cod" onclick="selectLocalPaymentChannel('cash_on_delivery')">
                                 <span class="payment-method-icon">💵</span>
@@ -1336,11 +1336,9 @@
 
                     <!-- 🔔 DYNAMIC STEP-BY-STEP POPUP DETAILS WRAPPERS -->
                     <div class="momo-instructions-panel" id="momoInstructionsWidget">
-                        <div class="momo-instruction-title" id="momoInstructionsHeader">MTN MoMo API Interface</div>
+                        <div class="momo-instruction-title" id="momoInstructionsHeader">Chat us on WhatsApp</div>
                         <div class="momo-instruction-text" id="momoInstructionsBody">
-                            Submitting will establish a live connection with the active network carrier gateway to dispatch an electronic payment push authorization request directly onto your smartphone.
-                       		Pls be note the the MTN Momo is not available at the mooment pls try again later
-						</div>
+                            Submitting will establish a live connection with the active network carrier gateway to dispatch an electronic payment push authorization request directly onto your smartphone.</div>
                     </div>
 
                     <!-- 🔒 DATA TERMS POLICY AGREEMENT RUNNER -->
@@ -1354,7 +1352,7 @@
                     </div>
 
                     
-                    <button type="submit" class="btn btn-submit" id="mainPaymentSubmitBtn" style="background-color: var(--success); color: var(--white);">Pay Live via MTN MoMo API</button>
+                    <button type="submit" class="btn btn-submit" id="mainPaymentSubmitBtn" style="background-color: var(--success); color: var(--white);">Chat us on Whatsapp</button>
                 </form>
                 <button class="btn btn-secondary" id="checkoutBackBtn" style="margin-top: 10px;" onclick="showViewWithLoader('cartView')">Return to Shopping Bag</button>
             </div>
@@ -2123,17 +2121,17 @@
             if (methodCode === 'mtn_momo') {
                 document.getElementById('payCard_momo').classList.add('active-method');
                 instructionBox.style.display = "block";
-                targetHeader.innerText = "MTN MoMo Live API Gateway";
+                targetHeader.innerText = "Chat us on Whatsapp";
                 targetBody.innerHTML = "Submitting will connect directly to the active MTN MoMo API servers to prompt a live transaction token verification push onto your smartphone.";
-                submitBtn.innerText = "Pay Live via MTN MoMo API";
+                submitBtn.innerText = "Chat us on WhatsApp";
                 submitBtn.style.backgroundColor = "#ffcc00";
                 submitBtn.style.color = "#000";
-            } else if (methodCode === 'orange_money') {
+            } else if (methodCode === 'Chat us on WhatsApp') {
                 document.getElementById('payCard_orange').classList.add('active-method');
                 instructionBox.style.display = "block";
-                targetHeader.innerText = "Orange Money Live API Gateway";
-                targetBody.innerHTML = "Submitting will connect straight to Orange WebPay token clearance servers to prompt your real-time secure payment authentication loop.";
-                submitBtn.innerText = "Pay Live via Orange Money API";
+                targetHeader.innerText = "Chat us on WhatsApp";
+                targetBody.innerHTML = "Submitting will connect straight to WhatsApp clearance servers to prompt your real-time secure payment authentication loop.";
+                submitBtn.innerText = "Chat us on WhatsApp";
                 submitBtn.style.backgroundColor = "#ff6600";
                 submitBtn.style.color = "#fff";
             } else {
@@ -2174,14 +2172,43 @@
             setTimeout(() => {
                 loader.style.display = 'none';
 
-                if (chosenPaymentMethodChannel === 'cash_on_delivery') {
-                    // COD paths clear instantly and cleanly for free!
-                    executeFinalOrderConfirmationPipeline(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, "Pending Cash On Delivery", "SUCCESSFUL");
-                } else if (chosenPaymentMethodChannel === 'mtn_momo') {
-                    executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, state, address, notes, totalCfaAmount, "MTN MoMo API", MTN_MOMO_PRODUCTION_API_KEY, "https://mtn.com");
-                } else {
-                    executeLiveCarrierApiHandshake(email, name, phone, whatsapp, townCity, staten, address, notes, totalCfaAmount, "Orange Money API", ORANGE_MONEY_PRODUCTION_API_KEY, "https://orange.com");
-                }
+               if (chosenPaymentMethodChannel === 'cash_on_delivery') {
+
+    executeFinalOrderConfirmationPipeline(
+        email,
+        name,
+        phone,
+        whatsapp,
+        townCity,
+        state,
+        address,
+        notes,
+        totalCfaAmount,
+        "Pending Cash On Delivery",
+        "SUCCESSFUL"
+    );
+
+} else {
+
+    latestTransactionData = {
+        date: new Date().toLocaleString(),
+        reference: "CAMZON-" + Date.now(),
+        name: name,
+        email: email,
+        phone: phone,
+        whatsapp: whatsapp,
+        cityState: townCity + ", " + state,
+        address: address,
+        notes: notes || "None",
+        paymentMethodString: chosenPaymentMethodChannel === "mtn_momo"
+            ? "Chat us on WhatsApp"
+            : "Chats us on WhatsApp",
+        summary: cart.map(item => `${item.name} (${item.quantity} Pcs)`).join(", "),
+        displayTotal: formatCurrencyDisplay(totalCfaAmount)
+    };
+
+    executeWhatsAppTextDispatch();
+}
             }, 2500);
         }
 
@@ -2426,29 +2453,29 @@ if (installBtn) {
     });
 }
 
-
-	
 </script>
+
 
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
-_smartsupp.key = '33a5b739c4ade694b994647b9bb85d73662da1db';
+_smartsupp.key = '0e0ead24a72faf237a2770cb9361d178c0e940ad';
 window.smartsupp||(function(d) {
   var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];
-  c=d.createElement('script');
+  s=d.getElementsByTagName('script')[0];c=d.
+  createElement('script');
   c.type='text/javascript';
   c.charset='utf-8';
   c.async=true;
   c.src='https://www.smartsuppchat.com/loader.js?';
   s.parentNode.insertBefore(c,s);
-})(document);
+  })(document);
 </script>
 
 <noscript>
 Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a>
 </noscript>
+
 
 </body>
 </html>
