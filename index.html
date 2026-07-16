@@ -14,9 +14,6 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Shop Camzon">
     <meta name="description" content="Get the Trending AI Tripod at wholesale package prices on Shop Camzon. Fast delivery across West Africa, multiple currencies supported (CFA, NGN, USD). Buy now!">
-    
-    <!-- 📱 LINK CONFIGURATION PROFILE TO TRIGGER GOOGLE CHROME PWA APP INSTALLATION -->
-    <link rel="manifest" href="manifest.json">
 
     <!-- 🏷️ GOOGLE RICH SNIPPET STRUCTURED DATA (TEMU-STYLE SEARCH ENGINE Snippet) -->
     <script type="application/ld+json">
@@ -1456,12 +1453,12 @@
     <script>
         // 📲 1. AUTOMATIC BACKGROUND ENGINE WORKER REGISTRATION (CHROME INSTANT INSTALL ENGINE)
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('PWA Service Worker registered safely!'))
-                    .catch(err => console.error('Worker link error:', err));
-            });
-        }
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('registered'))
+            .catch(err => console.error(err));
+    });
+}
 
         // 🔑 2. GENUINE SECURED MOBILE MONEY TRANSACTION PRODUCTION API KEY STORAGE VAULTS
         // Drop your live operational developer platform credentials inside these dedicated string boxes:
